@@ -1,14 +1,14 @@
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTyp, addPostAC, changeTextAC, PostsType} from "../../../state";
+import {ActionsTyp,PostsType} from "../../../redux/state";
 import React, {ChangeEvent, KeyboardEvent} from "react";
+import {addPostAC} from "../../../redux/profile-reducer";
+import {changeTextAC} from "../../../redux/profile-reducer";
 
 
 type ProfilePageTypeProps = {
     posts: Array<PostsType>
-    //addProfileType: (postText: string) => void    //Прокинули  dispatch
     messageForMessage: string
-    //changeNewTextCallback: (newText: string) => void   //Прокинули  dispatch
     dispatch: (action: ActionsTyp) => void
 }
 
@@ -20,11 +20,13 @@ export const MyPosts = (props: ProfilePageTypeProps) => {
 
 
     let addPost = () => {
+
         // props.addProfileType(props.messageForMessage)  //Прокинули  dispatch
         props.dispatch(addPostAC(props.messageForMessage))
     };
 
     const newChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+
         //props.changeNewTextCallback(e.currentTarget.value)
         props.dispatch(changeTextAC(e.currentTarget.value))
 

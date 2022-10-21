@@ -7,7 +7,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {ActionsTyp, StoreType} from "./state";
+import {StoreType} from "./redux/state";
 import React from "react";
 
 type PropsType = {

@@ -1,5 +1,5 @@
 import s from './../Dialogs.module.css'
-import {MessagesType} from "../../../state";
+import {MessagesType} from "../../../redux/state";
 
 
 

@@ -1,6 +1,6 @@
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsTyp, ProfilePageType} from "../../state";
+import {ActionsTyp, ProfilePageType} from "../../redux/state";
 
 
 type ProfilePropsType = {

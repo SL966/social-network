@@ -1,3 +1,7 @@
+import {addPostAC, profileReducer,changeTextAC} from "./profile-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+import {updateNewMessageBodyAC, dialogsReducer, sendMessageAC} from "./dialogs-reducer";
+
 export type MessagesType = {
     id: number
     message: string
@@ -36,8 +40,6 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    //changeText: (newText: string) => void
-    //addPost: (postText: string) => void
     _onChange: () => void
     _subscribe: (callback: () => void) => void
     getSate: () => RootStateType
@@ -47,35 +49,6 @@ export type StoreType = {
 
 export type ActionsTyp = ReturnType<typeof addPostAC> | ReturnType<typeof changeTextAC>
     | ReturnType<typeof updateNewMessageBodyAC> | ReturnType<typeof sendMessageAC>
-
-
-export const addPostAC = (postText: string) => {
-    return {
-        type: 'ADD-POST-MESSAGE',
-        postText: postText
-    } as const
-};
-
-export const changeTextAC = (newText: string) => {
-    return {
-        type: 'CHANGE-TEXT',
-        newText: newText
-    } as const
-};
-
-export const updateNewMessageBodyAC = (body: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-BODY',
-        body: body
-    } as const
-};
-
-export const sendMessageAC = (body: string) => {
-    return {
-        type: 'SEND-MESSAGE',
-        body: body
-    } as const
-};
 
 export const store: StoreType = {
     _state: {
@@ -110,44 +83,14 @@ export const store: StoreType = {
         sidebar: {}
     },
 
-    /*changeText(newText: string) {
-        this._state.profilePage.massageForNewPost = newText;
-        this._onChange();
-    },
-    addPost(postText: string) {
-
-        const newPost: PostsType = {
-            id: new Date().getTime(),
-            message: postText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.massageForNewPost = '';
-        this._onChange();
-    },*/
 
     dispatch(action) {
-        if (action.type === 'ADD-POST-MESSAGE') {
-            const newPost: PostsType = {
-                id: new Date().getTime(),
-                message: action.postText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.massageForNewPost = '';
-            this._onChange();
-        } else if (action.type === 'CHANGE-TEXT') {
-            this._state.profilePage.massageForNewPost = action.newText;
-            this._onChange();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.body;
-            this._onChange();
-        } else if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = '';
-            this._state.dialogsPage.messages.push({id: new Date().getTime(), message: body});
-            this._onChange();
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._onChange();
+        this.getSate();
     },
 
     _onChange() {
@@ -160,5 +103,6 @@ export const store: StoreType = {
         return this._state;
     }
 };
+
 
 
