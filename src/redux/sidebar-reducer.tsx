@@ -1,6 +1,7 @@
 
+let initialState = {}
 
-export const sidebarReducer = (state: any, action: any) => {
+export const sidebarReducer = (state = initialState, action: any) => {
     switch (action.type) {
 
     }

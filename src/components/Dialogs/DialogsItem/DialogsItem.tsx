@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import {DialogsType} from "../../../redux/state";
+import {DialogsType} from "../../../redux/store";
 import React from "react";
 
 

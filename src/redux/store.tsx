@@ -41,8 +41,8 @@ export type RootStateType = {
 export type StoreType = {
     _state: RootStateType
     _onChange: () => void
-    _subscribe: (callback: () => void) => void
-    getSate: () => RootStateType
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
     dispatch: (action: ActionsTyp) => void
 };
 
@@ -85,21 +85,22 @@ export const store: StoreType = {
 
 
     dispatch(action) {
-
+        console.log('dispatch')
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._onChange();
-        this.getSate();
     },
 
     _onChange() {
-        console.log('state changed')
+        console.log('_onChange')
     },
-    _subscribe(callback) {
+    subscribe(callback) {
+        console.log('subscribe')
         this._onChange = callback
     },
-    getSate() {
+    getState() {
+        console.log('getSate')
         return this._state;
     }
 };

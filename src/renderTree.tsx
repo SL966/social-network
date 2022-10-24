@@ -1,7 +1,8 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-import {store} from "./redux/state";
+import store from "./redux/redux-store";
+
 
 export const renderTree = () => {
     ReactDOM.render(
@@ -11,3 +12,4 @@ export const renderTree = () => {
         document.getElementById('root')
     );
 };
+

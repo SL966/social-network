@@ -1,9 +1,16 @@
 import './index.css';
 import {renderTree} from "./renderTree";
-import {store} from "./redux/state";
+import store from "./redux/redux-store";
 
-store._subscribe(renderTree)
+store.subscribe(() => {
+    debugger;
+    console.log('store subscribe')
+    renderTree();
+});
 renderTree();
+
+
+
 
 
 
