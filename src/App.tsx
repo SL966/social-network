@@ -5,18 +5,13 @@ import Nav from "./components/Nav/Nav";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
-import {StoreType} from "./redux/store";
+import {Profile} from "./components/Profile/Profile";
 import React from "react";
-
-type PropsType = {
-    store: StoreType
-}
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
-const App: React.FC<PropsType> = (props) => {
-    const state = props.store.getState();
+
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <div className={s.app_wrapper}>
@@ -26,13 +21,10 @@ const App: React.FC<PropsType> = (props) => {
                     <Routes>
                         <Route
                             path='/message'
-                            element={<Dialogs dialogs={state.dialogsPage}
-                                              dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                            element={<DialogsContainer />}/>
                         <Route
                             path='/profile'
-                            element={<Profile profile={state.profilePage}
-                                              massage={state.profilePage.massageForNewPost}
-                                              dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                            element={<Profile />}/>
                         <Route
                             path='/news' element={<News/>}/>
                         <Route
@@ -44,6 +36,6 @@ const App: React.FC<PropsType> = (props) => {
             </div>
         </BrowserRouter>
     );
-}
+};
 
 export default App;

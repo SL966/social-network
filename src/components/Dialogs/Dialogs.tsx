@@ -1,35 +1,35 @@
 import DialogsItems from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
-
-import {ActionsTyp, DialogsPageType} from '../../redux/store'
 import s from './Dialogs.module.css'
-import {ChangeEvent} from "react";
-import {sendMessageAC} from "../../redux/dialogs-reducer";
-import {updateNewMessageBodyAC} from "../../redux/dialogs-reducer";
+import React, {ChangeEvent} from "react";
+import {InitialStateType} from "../../redux/dialogs-reducer";
 
 type DialogPropsType = {
-    dialogs: DialogsPageType
-    dispatch: (action: ActionsTyp) => void
+    dialogs: InitialStateType
+    onNewMessageChange: (body: string) => void
+    onSendMessageClick: (action: string) => void
 }
 
-const Dialogs = (props: DialogPropsType) => {
-    let dialogElement = props.dialogs.dialogs.map(d => (<DialogsItems key={d.id} name={d.name} id={d.id}/>));
-    let messageElement = props.dialogs.messages.map(m => (<Message key={m.id} message={m.message} id={m.id}/>));
+const Dialogs: React.FC<DialogPropsType> = (props ) => {
+    //console.log('fere', props)
+
+    let dialogElement = props.dialogs.dialogs.map(d => (
+        <DialogsItems key={d.id} name={d.name} id={d.id}/>)
+    );
+    let messageElement = props.dialogs.messages.map(m => (
+        <Message key={m.id} message={m.message} id={m.id}/>)
+    );
     let newMessageBody = props.dialogs.newMessageBody;
 
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageAC(props.dialogs.newMessageBody))
+
+        props.onSendMessageClick(props.dialogs.newMessageBody)
     }
+
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value
-props.dispatch(updateNewMessageBodyAC(body)); // через let body , другим способом чем newChangeTextHandler(MyPosts).
+
+        props.onNewMessageChange(e.currentTarget.value);
     }
-
-
-
-
-
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -41,14 +41,18 @@ props.dispatch(updateNewMessageBodyAC(body)); // через let body , друг�
                 </div>
                 <div>
                     <div><textarea value={newMessageBody}
-                                   onChange={ onNewMessageChange }
+                                   onChange={onNewMessageChange}
                                    placeholder={'Enter your message'}></textarea></div>
-                    <div><button onClick={ onSendMessageClick }
-                    >Send</button></div>
+                    <div>
+                        <button className={s.button_send_message}
+                                onClick={onSendMessageClick}
+                        >Send
+                        </button>
+
+                    </div>
                 </div>
             </div>
         </div>
-
     )
 }
 

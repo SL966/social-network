@@ -1,3 +1,9 @@
+export type SidebarType = {};
+
+export type SadeBarStateType = {
+    sidebar: SidebarType
+};
+
 
 let initialState = {}
 

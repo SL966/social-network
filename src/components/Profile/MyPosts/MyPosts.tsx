@@ -1,43 +1,30 @@
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTyp,PostsType} from "../../../redux/store";
-import React, {ChangeEvent, KeyboardEvent} from "react";
-import {addPostAC} from "../../../redux/profile-reducer";
-import {changeTextAC} from "../../../redux/profile-reducer";
+import {InitialStateType} from "../../../redux/profile-reducer";
+import React, {ChangeEvent} from "react";
 
 
-type ProfilePageTypeProps = {
-    posts: Array<PostsType>
-    messageForMessage: string
-    dispatch: (action: ActionsTyp) => void
+export type ProfilePageTypeProps = {
+    posts: InitialStateType
+    massageForNewPost: string
+    newChangeTextHandler: (newText: string) => void
+    addPost: (action: string) => void
 }
 
-
-export const MyPosts = (props: ProfilePageTypeProps) => {
-
-    let PostsElement = props.posts.map(p => (
+export const MyPosts: React.FC<ProfilePageTypeProps> = (props) => {
+    //console.log('MyPosts', props.posts.posts.map)
+    let PostsElement = props.posts.posts.map(p => (
         <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>))
 
-
     let addPost = () => {
-
-        // props.addProfileType(props.messageForMessage)  //Прокинули  dispatch
-        props.dispatch(addPostAC(props.messageForMessage))
+        console.log('addPost',props.massageForNewPost)
+        props.addPost(props.massageForNewPost)
     };
 
     const newChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-
-        //props.changeNewTextCallback(e.currentTarget.value)
-        props.dispatch(changeTextAC(e.currentTarget.value))
-
+         console.log('newChangeTextHandler',props.newChangeTextHandler )
+        props.newChangeTextHandler(e.currentTarget.value)
     };
-
-    const keyDownButton = (e: KeyboardEvent<HTMLButtonElement>) => {
-        addPost()
-        if (e.key !== undefined) { // не работает !!! исправить
-            addPost();
-        }
-    }
 
     return (
         <div>
@@ -46,12 +33,13 @@ export const MyPosts = (props: ProfilePageTypeProps) => {
                     <h3>My posts</h3>
                     <div>
                         <textarea className={s.textarea}
-                                  value={props.messageForMessage}
-                                  onChange={newChangeTextHandler}/>
+                                  value={props.massageForNewPost}
+                                  onChange={newChangeTextHandler}
+                                  placeholder={'Enter your text'}/>
                     </div>
                     <div>
                         <button className={s.buttonAdd} onClick={addPost}
-                                onKeyDown={keyDownButton}>Add post
+                            /*onKeyDown={keyDownButton}*/>Add post
                         </button>
                     </div>
                 </div>

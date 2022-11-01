@@ -1,15 +1,15 @@
-import './index.css';
-import {renderTree} from "./renderTree";
-import store from "./redux/redux-store";
+import ReactDOM from "react-dom";
+import React from "react";
+import App from "./App";
+import {store} from "./redux/redux-store";
+import {Provider} from "react-redux";
 
-store.subscribe(() => {
-    debugger;
-    console.log('store subscribe')
-    renderTree();
-});
-renderTree();
-
-
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('root')
+);
 
 
 
