@@ -8,5 +8,4 @@ const Message = (props:MessagesType) => {
 }
 
 
-
 export default Message;

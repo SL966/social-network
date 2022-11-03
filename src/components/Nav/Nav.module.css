@@ -25,12 +25,11 @@
 }
 
 .visual_nav:hover {
-    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0  5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
-
 @keyframes spincube {
-    from,to {
+    from, to {
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     }
     16% {
@@ -50,54 +49,54 @@
     }
 }
 
-.cubespinner {
+.cube_spinner {
     animation-name: spincube;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-duration: 12s;
     transform-style: preserve-3d;
     transform-origin: 60px 60px 0;
-    margin-left: 32px;
+    margin-left: 28%;
     margin-top: 80px;
+
 }
 
-.cubespinner div {
+.cube_spinner div {
     position: absolute;
     width: 120px;
     height: 120px;
     border: 1px solid #8ECBDE;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.6);
     box-shadow: inset 0 0 20px #8ECBDE;
     line-height: 120px;
     text-align: center;
     font-size: xx-large;
-    color:#55BEDE;
+    color: #55BEDE;
 }
 
-.cubespinner .face1 {
-
+.cube_spinner .face1 {
     transform: translateZ(60px);
 }
 
-.cubespinner .face2 {
+.cube_spinner .face2 {
     transform: rotateY(90deg) translateZ(60px);
     font-size: x-large;
 }
 
-.cubespinner .face3 {
+.cube_spinner .face3 {
     transform: rotateY(90deg) rotateX(90deg) translateZ(60px);
 
 }
 
-.cubespinner .face4 {
+.cube_spinner .face4 {
     transform: rotateY(180deg) rotateZ(90deg) translateZ(60px);
 }
 
-.cubespinner .face5 {
+.cube_spinner .face5 {
     transform: rotateY(-90deg) rotateZ(90deg) translateZ(60px);
 }
 
-.cubespinner .face6 {
+.cube_spinner .face6 {
     transform: rotateX(-90deg) translateZ(60px);
 }
 
@@ -106,7 +105,11 @@
     height: 50px;
     animation: rotation infinite 3s linear;
     margin: auto auto -15px auto;
+}
 
+.rotate:hover {
+    border-radius: 35px;
+    background: red;
 }
 
 @keyframes rotation {
@@ -117,6 +120,15 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.cube_spinner_face {
+    color: #55BEDE;
+    text-decoration: none;
+}
+
+.cube_spinner_face:hover {
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
 

@@ -3,7 +3,6 @@ import Post from "./Post/Post";
 import {InitialStateType} from "../../../redux/profile-reducer";
 import React, {ChangeEvent} from "react";
 
-
 export type ProfilePageTypeProps = {
     posts: InitialStateType
     massageForNewPost: string
@@ -12,17 +11,16 @@ export type ProfilePageTypeProps = {
 }
 
 export const MyPosts: React.FC<ProfilePageTypeProps> = (props) => {
-    //console.log('MyPosts', props.posts.posts.map)
     let PostsElement = props.posts.posts.map(p => (
         <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>))
 
     let addPost = () => {
-        console.log('addPost',props.massageForNewPost)
+        console.log('addPost', props.massageForNewPost)
         props.addPost(props.massageForNewPost)
     };
 
     const newChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-         console.log('newChangeTextHandler',props.newChangeTextHandler )
+        console.log('newChangeTextHandler', props.newChangeTextHandler)
         props.newChangeTextHandler(e.currentTarget.value)
     };
 
@@ -30,7 +28,8 @@ export const MyPosts: React.FC<ProfilePageTypeProps> = (props) => {
         <div>
             <div>
                 <div className={s.myPosts}>
-                    <h3>My posts</h3>
+                    <h3 className={s.hit_the_floor}>My posts</h3>
+
                     <div>
                         <textarea className={s.textarea}
                                   value={props.massageForNewPost}
@@ -38,8 +37,9 @@ export const MyPosts: React.FC<ProfilePageTypeProps> = (props) => {
                                   placeholder={'Enter your text'}/>
                     </div>
                     <div>
-                        <button className={s.buttonAdd} onClick={addPost}
-                            /*onKeyDown={keyDownButton}*/>Add post
+                        <button className={s.buttonAdd}
+                                onClick={addPost}
+                        ><span>Add post</span>
                         </button>
                     </div>
                 </div>
