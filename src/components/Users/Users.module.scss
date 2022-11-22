@@ -1,0 +1,36 @@
+
+.user_avatar {
+  width: 60px;
+
+}
+
+.selectedPage {
+  font-weight: bold;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: red;
+}
+
+.usersPage {
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.usersMessages {
+  display: grid;
+  margin-left: 100px;
+  margin-top: 30px;
+}
+
+.pagesNumber {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.imgPreloader {
+  background-color: cyan;
+  width: 40px;
+  height: 40px;
+}

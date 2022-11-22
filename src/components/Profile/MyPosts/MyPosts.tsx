@@ -1,4 +1,4 @@
-import s from './MyPosts.module.css'
+import s from './MyPosts.module.scss'
 import Post from "./Post/Post";
 import {InitialStateType} from "../../../redux/profile-reducer";
 import React, {ChangeEvent} from "react";
@@ -6,7 +6,7 @@ import React, {ChangeEvent} from "react";
 export type ProfilePageTypeProps = {
     posts: InitialStateType
     massageForNewPost: string
-    newChangeTextHandler: (newText: string) => void
+    changeText: (newText: string) => void
     addPost: (action: string) => void
 }
 
@@ -15,13 +15,11 @@ export const MyPosts: React.FC<ProfilePageTypeProps> = (props) => {
         <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>))
 
     let addPost = () => {
-        console.log('addPost', props.massageForNewPost)
         props.addPost(props.massageForNewPost)
     };
 
-    const newChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        console.log('newChangeTextHandler', props.newChangeTextHandler)
-        props.newChangeTextHandler(e.currentTarget.value)
+    const changeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeText(e.currentTarget.value)
     };
 
     return (
@@ -29,11 +27,10 @@ export const MyPosts: React.FC<ProfilePageTypeProps> = (props) => {
             <div>
                 <div className={s.myPosts}>
                     <h3 className={s.hit_the_floor}>My posts</h3>
-
                     <div>
                         <textarea className={s.textarea}
                                   value={props.massageForNewPost}
-                                  onChange={newChangeTextHandler}
+                                  onChange={changeText}
                                   placeholder={'Enter your text'}/>
                     </div>
                     <div>

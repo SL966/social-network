@@ -1,14 +1,14 @@
 import DialogsItems from "./DialogsItem/DialogsItem";
 import Message from "./Message/Message";
-import s from './Dialogs.module.css'
+import s from './Dialogs.module.scss'
 import React, {ChangeEvent} from "react";
 import {InitialStateType} from "../../redux/dialogs-reducer";
 import {Simona} from "../Simona/Simona";
 
 type DialogPropsType = {
     dialogs: InitialStateType
-    onNewMessageChange: (body: string) => void
-    onSendMessageClick: (action: string) => void
+    updateNewMessageBody: (body: string) => void
+    sendMessage: (action: string) => void
 }
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
@@ -23,13 +23,11 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
     let newMessageBody = props.dialogs.newMessageBody;
 
     let onSendMessageClick = () => {
-
-        props.onSendMessageClick(props.dialogs.newMessageBody)
+        props.sendMessage(props.dialogs.newMessageBody)
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-
-        props.onNewMessageChange(e.currentTarget.value);
+        props.updateNewMessageBody(e.currentTarget.value);
     }
     return (
         <div>
@@ -45,7 +43,8 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                         {messageElement}
                     </div>
                     <div>
-                        <div><textarea value={newMessageBody}
+                        <div><textarea className={s.textarea}
+                                       value={newMessageBody}
                                        onChange={onNewMessageChange}
                                        placeholder={'Enter your message'}></textarea></div>
                         <div>

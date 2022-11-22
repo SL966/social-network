@@ -2,34 +2,33 @@
 
 
 .container_smoky {
-  font-size: 240%;
- /* //border-radius: 25px;
-  display: grid;
-  !* margin-top: 57px; *!
-  margin-top: -4px;
-  height: 140px;
-  width: 860px;
-  background: cyan;
-  overflow: hidden;
-  font: 5vw/19vh "Finger Paint";
-  text-align: center;
-  !* color: transparent; *!
+  //font-size: 240%;
+  //border-radius: 25px;
+  //display: grid;
+  /* margin-top: 57px; */
+  //margin-top: -4px;
+  //height: 140px;
+  //width: 860px;
+ // background: cyan;
+  //overflow: hidden;
+ // font: 5vw/19vh "Finger Paint";
+  //text-align: center;
+  /* color: transparent; */
+  //backface-visibility: hidden;
+  /* color: transparent; */   /*цвет букв*/
+  //align-items: end;
+  justify-content: start;
+  font: 3vw/10vh "Finger Paint";
+  text-align: left;
+  margin-left: 50px;
+  color: transparent;
   backface-visibility: hidden;
-  !* color: transparent; *!   !*цвет букв*!
-  align-items: end;
-  justify-content: start;*/
 
-}
-.red {
-  color: red;
-}
-.blue {
-  color: blue;
 }
 
 .span1 {
   display: inline-block;
-  text-shadow: 0 0 0 whitesmoke;
+  text-shadow: 0 0 0 black;
   animation: smoky 8s 5s infinite;
 }
 
@@ -40,28 +39,93 @@
 
 @keyframes smoky {
   60% {
-    text-shadow: 0 0 40px whitesmoke;
+    text-shadow: 0 0 40px black;
   }
   to {
     transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
-    text-shadow: 0 0 20px whitesmoke;
+    text-shadow: 0 0 20px black;
     opacity: 0;
   }
 }
 
 @keyframes smoky-mirror {
   60% {
-    text-shadow: 0 0 40px whitesmoke;
+    text-shadow: 0 0 40px black;
   }
   to {
     transform: translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
-    text-shadow: 0 0 20px whitesmoke;
+    text-shadow: 0 0 20px black;
     opacity: 0;
   }
 }
 
 @for $item from 1 through 21 {
-  span:nth-of-type(#{$item}) {
+  .span1:nth-of-type(#{$item}) {
     animation-delay: #{(3 + ($item/10))}s;
+  }
+}
+
+.blue {
+  display: inline-block;
+  text-shadow: 0 0 0 blue;
+  animation: smok 8s 5s infinite;
+}
+
+.blue:nth-child(even) {
+  animation-name: smok-mir;
+}
+
+@keyframes smok {
+  60% {
+    text-shadow: 0 0 40px blue;
+  }
+  to {
+    transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+    text-shadow: 0 0 20px blue;
+    opacity: 0;
+  }
+}
+
+@keyframes smok-mir {
+  60% {
+    text-shadow: 0 0 40px blue;
+  }
+  to {
+    transform: translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
+    text-shadow: 0 0 20px blue;
+    opacity: 0;
+  }
+}
+
+.red {
+  display: inline-block;
+  text-shadow: 0 0 0 red;
+  animation: sm 8s 5s infinite;
+}
+
+.red:nth-child(even) {
+  animation-name: sm-mi;
+}
+
+
+@keyframes sm {
+  60% {
+    text-shadow: 0 0 40px red;
+  }
+  to {
+    transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+    text-shadow: 0 0 20px red;
+    opacity: 0;
+  }
+}
+
+@keyframes sm-mi {
+  60% {
+    text-shadow: 0 0 40px red;
+  }
+  to {
+    transform: translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
+    text-shadow: 0 0 20px red;
+    opacity: 0;
   }
 }

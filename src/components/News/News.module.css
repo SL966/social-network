@@ -4,12 +4,12 @@
     text-align: center;
 
 }
-.item a {
+.itemis a {
     color: white;
     text-decoration: none;
 
 }
 
-.item a.active {
+.itemis a.active {
     color: red;
 }
